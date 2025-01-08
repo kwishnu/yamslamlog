@@ -1,21 +1,36 @@
 {
   "name": "yamslamlog",
   "version": "0.1.0",
+  "homepage": "https://kwishnu.github.io/yamslamlog",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.4",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1",
+    "ajv": "^8.17.1",
+    "animate.css": "^4.1.1",
+    "date-fns": "^2.30.0",
+    "framer-motion": "^10.18.0",
+    "hammerjs": "^2.0.8",
+    "nanoid": "^5.0.9",
+    "react": "^18.2.0",
+    "react-confetti-explosion": "^2.1.2",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-page-visibility": "^7.0.0",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^9.1.3",
+    "screen-orientation-react": "^1.0.3",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.6.0",
     "workbox-broadcast-update": "^6.6.0",
     "workbox-cacheable-response": "^6.6.0",
     "workbox-core": "^6.6.0",
     "workbox-expiration": "^6.6.0",
-    "workbox-google-analytics": "^6.6.1",
+    "workbox-google-analytics": "^6.6.0",
     "workbox-navigation-preload": "^6.6.0",
     "workbox-precaching": "^6.6.0",
     "workbox-range-requests": "^6.6.0",
@@ -24,7 +39,9 @@
     "workbox-streams": "^6.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -46,5 +63,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^5.0.0"
   }
 }
