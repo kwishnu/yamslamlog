@@ -74,7 +74,7 @@ const appStyles = {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',
-    height: scrHeight/5,
+    height: scrHeight/6,
     width: config.scrHeight * 9/16 - 50,
     padding: 20,
     },
@@ -121,22 +121,24 @@ const appStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     width: '50%',
+    height: "80%",
     borderRadius: 5,
     borderWidth: 2, 
     borderStyle: 'solid',
     boxShadow: `10px 10px 36px ${colors.off_black}`,
-    padding: 10
+    padding: 40
   },
   tie_button: {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',
     width: '10%',
+    height: "80%",
     borderRadius: 5,
     borderWidth: 2, 
     borderStyle: 'solid',
     boxShadow: `10px 10px 36px ${colors.off_black}`,
-    padding: 10
+    padding: 30
   },
   resultsButtonText: {
     fontSize: 18,
@@ -160,7 +162,14 @@ const appStyles = {
   labelText: {
     fontSize: 26,
     color: colors.off_white,
-    marginLeft: 10
+    marginLeft: 10,
+    userSelect: "none"
+  },
+  gamesLabelText: {
+    fontSize: 20,
+    color: colors.off_white,
+    marginLeft: 10,
+    userSelect: "none"
   },
   fieldDiv: {
     display: "flex",
@@ -200,11 +209,13 @@ const appStyles = {
   field_text: {
     fontFamily: "system-ui",
     color: colors.bright_green,
-    fontSize: 48
+    fontSize: 30,
+    userSelect: 'none'
   },
   date_text: {
     color: colors.text_white,
-    fontSize: 28
+    fontSize: 28,
+    userSelect: 'none'
   },
   confirm_button: {
     padding: "20px 60px",
@@ -218,7 +229,7 @@ const appStyles = {
   confirm_button_text: {
     fontSize: 20,
     color: colors.off_white,
-
+    userSelect: 'none'
   },
   footerText: {
     fontSize: 14,

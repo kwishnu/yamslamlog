@@ -195,7 +195,7 @@ class App extends Component {
         <div style={styles.gamesCountContainer}>
           <div style={styles.gamesCountDiv}>
             <div style={{height: "100%", width: "50%"}}>
-              <div style={styles.labelText}>
+              <div style={styles.gamesLabelText}>
                 Total Games:
               </div>
             </div>
