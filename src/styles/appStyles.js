@@ -33,6 +33,26 @@ const appStyles = {
     borderWidth: 2,
     zIndex: 1000,
   },
+  gamesCountContainer: {
+    position: "fixed",
+    top: "20%",
+    left: "50%",
+    // height: 30,
+    // width: "80%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+    padding: "20px",
+    borderRadius: "8px",
+    borderColor: 'red', borderWidth: 2,
+    zIndex: 1000,
+},
+  gamesCountDiv: {
+    display: "flex",
+    flexDirection: "row",
+    width: scrHeight/2,
+    height: 40,
+    borderColor: 'yellow', borderWidth: 2,
+},
   centerContainer: {
     display: "flex",
     flexDirection: "column",
@@ -107,6 +127,17 @@ const appStyles = {
     boxShadow: `10px 10px 36px ${colors.off_black}`,
     padding: 10
   },
+  tie_button: {
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '10%',
+    borderRadius: 5,
+    borderWidth: 2, 
+    borderStyle: 'solid',
+    boxShadow: `10px 10px 36px ${colors.off_black}`,
+    padding: 10
+  },
   resultsButtonText: {
     fontSize: 18,
     color: colors.off_white,
@@ -118,14 +149,14 @@ const appStyles = {
     justifyContent: 'center',
     height: "100%",
     width: "50%",
-    },
+  },
   labelDiv: {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'flex-start',
     height: "15%",
     width: "100%",
-    },
+  },
   labelText: {
     fontSize: 26,
     color: colors.off_white,
@@ -134,15 +165,26 @@ const appStyles = {
   fieldDiv: {
     display: "flex",
     alignItems: 'center',
-    justifyContent: 'center',
-    height: "35%",
+    justifyContent: 'flex-end',
     width: "100%",
-    },
+  },
+  gamesFieldDiv: {
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: "35%"
+  },
+  gamesFieldDivOuter: {
+    height: "100%", 
+    width: "50%", 
+    display: "flex",
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
   button_text: {
     fontSize: 32,
     color: colors.off_white,
     userSelect: "none"
-
   },
   field: {
     alignItems: 'center',
