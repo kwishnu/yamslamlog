@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/yamslamlog/static/css/main.e6c13ad2.css",
-    "main.js": "/yamslamlog/static/js/main.29257c65.js",
+    "main.js": "/yamslamlog/static/js/main.cea064e5.js",
     "static/js/453.c4b1b92b.chunk.js": "/yamslamlog/static/js/453.c4b1b92b.chunk.js",
     "static/media/logo.png": "/yamslamlog/static/media/logo.c8654cace519d5a4d9b8.png",
     "service-worker.js": "/yamslamlog/service-worker.js",
     "index.html": "/yamslamlog/index.html",
     "main.e6c13ad2.css.map": "/yamslamlog/static/css/main.e6c13ad2.css.map",
-    "main.29257c65.js.map": "/yamslamlog/static/js/main.29257c65.js.map",
+    "main.cea064e5.js.map": "/yamslamlog/static/js/main.cea064e5.js.map",
     "453.c4b1b92b.chunk.js.map": "/yamslamlog/static/js/453.c4b1b92b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.29257c65.js"
+    "static/js/main.cea064e5.js"
   ]
 }
