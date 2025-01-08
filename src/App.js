@@ -17,6 +17,7 @@ class App extends Component {
       winner: "",
       dianeWins: 0,
       kenWins: 0,
+      gamesPlayed: 0,
       diPercentage: 0,
       kenPercentage: 0,
       date: "",
@@ -30,7 +31,7 @@ class App extends Component {
     let kenWins = localStorage.getItem("Ken Wins");
     if (kenWins === null) {
       localStorage.setItem("Ken Wins", 0);
-      kenWins = 0; // Default value
+      kenWins = 0;
     } else {
       kenWins = parseInt(kenWins, 10);
     }
@@ -38,17 +39,32 @@ class App extends Component {
     let dianeWins = localStorage.getItem("Diane Wins");
     if (dianeWins === null) {
       localStorage.setItem("Diane Wins", 0);
-      dianeWins = 0; // Default value
+      dianeWins = 2;
     } else {
       dianeWins = parseInt(dianeWins, 10);
     }
 
-    const totalVictories = kenWins + dianeWins;
-    let kenPercentage = totalVictories > 0 ? Math.floor((kenWins / totalVictories) * 100) : 0;
-    const diPercentage = totalVictories > 0 ? Math.floor((dianeWins / totalVictories) * 100) : 0;
+    let gamesPlayed = localStorage.getItem("Games Played");
+    if (gamesPlayed === null) {
+      localStorage.setItem("Games Played", 2);
+      gamesPlayed = 2; // Default value 2 because we've already played that!
+    } else {
+      gamesPlayed = parseInt(gamesPlayed, 10);
+    }
+    this.setState({gamesPlayed});
+
+    let lastWinner = localStorage.getItem("Last Winner");
+    if (lastWinner === null) {
+      localStorage.setItem("Last Winner", "Diane");
+      lastWinner = "Diane";
+    }
+    this.setState({lastWinner});
+
+    let kenPercentage = gamesPlayed > 0 ? Math.floor((kenWins / gamesPlayed) * 100) : 0;
+    const diPercentage = gamesPlayed > 0 ? Math.floor((dianeWins / gamesPlayed) * 100) : 0;
     kenPercentage = (kenPercentage + diPercentage < 100 && kenPercentage + diPercentage !== 0)? kenPercentage + 1:kenPercentage;
 
-      this.setState({ kenWins, dianeWins, diPercentage, kenPercentage, date: prettyDate });
+    this.setState({ kenWins, dianeWins, diPercentage, kenPercentage, date: prettyDate });
   }
 
   handleOpenDialog(name) {
@@ -111,25 +127,23 @@ class App extends Component {
   }
 
   render() {
-    const { showDialog, showTieDialog, winner, kenWins, dianeWins, kenPercentage, diPercentage, date } = this.state;
+    const { showDialog, 
+            showTieDialog, 
+            winner, 
+            kenWins, 
+            dianeWins, 
+            gamesPlayed, 
+            kenPercentage, 
+            diPercentage, 
+            date, 
+            lastWinner 
+          } = this.state;
 
     return (
       <PageVisibility onChange={isVisible => this.handleVisibilityChange(isVisible)}>
         <div style={styles.appContainer}>
           {showDialog && (
-            <div
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-                padding: "20px",
-                borderRadius: "8px",
-                zIndex: 1000,
-              }}
-            >
+            <div style={styles.dialogBox}>
               <p>Add a victory for {winner}?</p>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
 
@@ -153,19 +167,7 @@ class App extends Component {
             </div>
           )}
           {showTieDialog && (
-            <div
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-                padding: "20px",
-                borderRadius: "8px",
-                zIndex: 1000,
-              }}
-            >
+            <div style={styles.dialogBox}>
               <p>Enter a Tie Game?</p>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <button
@@ -200,9 +202,9 @@ class App extends Component {
               </div>
             </div>
             <div style={styles.gamesFieldDivOuter}>
-              <div style={styles.fieldDiv}>
+              <div style={styles.gamesFieldDiv}>
                 <div style={styles.field}>
-                  <div style={styles.field_text}>{kenPercentage}</div>
+                  <div style={styles.field_text}>{gamesPlayed}</div>
                 </div>
               </div>
 
@@ -224,7 +226,7 @@ class App extends Component {
             style={styles.addButtonsContainer}
           >
             <motion.button 
-              style={{...styles.add_button, backgroundColor: 'magenta', borderColor: colors.accent_purple, }}
+              style={{...styles.add_button, backgroundColor: lastWinner == "Diane"?colors.dark_green:lastWinner == "Ken"?colors.red:'magenta', borderColor: colors.accent_purple, }}
               whileTap={{ scale: 0.95 }} 
               onClick={() => this.handleOpenDialog("Diane")}
             >
@@ -232,7 +234,7 @@ class App extends Component {
             </motion.button>
 
             <motion.button 
-              style={{...styles.add_button, backgroundColor: 'blue', borderColor: colors.gray_4, }}
+              style={{...styles.add_button, backgroundColor: lastWinner == "Ken"?colors.dark_green:lastWinner == "Diane"?colors.red:'blue', borderColor: colors.gray_4, }}
               whileTap={{ scale: 0.9 }} 
               onClick={() => this.handleOpenDialog("Ken")}
             >

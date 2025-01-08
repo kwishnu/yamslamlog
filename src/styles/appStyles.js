@@ -33,6 +33,17 @@ const appStyles = {
     borderWidth: 2,
     zIndex: 1000,
   },
+  dialogBox: {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "white",
+    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+    padding: "20px",
+    borderRadius: "8px",
+    zIndex: 1000,
+  },
   gamesCountContainer: {
     position: "fixed",
     top: "20%",
@@ -98,7 +109,7 @@ const appStyles = {
     display: "flex",
     flexDirection: "row",
     alignItems: 'center',
-    height: scrHeight/4,
+    height: scrHeight/5,
     width: config.scrHeight * 9/16 - 50,
     justifyContent: 'center',
     padding: 20,
@@ -148,7 +159,7 @@ const appStyles = {
     display: "flex",
     flexDirection: "column",
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     height: "100%",
     width: "50%",
   },
@@ -174,13 +185,15 @@ const appStyles = {
   fieldDiv: {
     display: "flex",
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginBottom: 20,
     width: "100%",
   },
   gamesFieldDiv: {
     display: "flex",
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     height: "35%"
   },
   gamesFieldDivOuter: {
