@@ -60,7 +60,8 @@ const appStyles = {
     width: pc ? scrWidth - (2 * widthLeftOrRight - 40) : "100%",
     padding: "20px",
     borderRadius: "8px",
-    borderColor: 'red', borderWidth: 2,
+    borderColor: 'red', 
+    borderWidth: 2,
     zIndex: 1000
 },
   gamesCountDiv: {
