@@ -20,13 +20,8 @@ class History extends Component {
   closeSelf(){
     this.props.requestModalClose(false);
   }
-  toggleUpgradeModal(open){
-    this.setState({showUpgradeModal: open});
-  }
-  toggleTYModal(open){
-    this.setState({showThankYouModal: open});
-  }
-   render() {
+
+  render() {
     const closeImage = require("../images/close.png");
     const { isModalVisible } = this.props;
 
