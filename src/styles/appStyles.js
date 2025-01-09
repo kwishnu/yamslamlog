@@ -109,7 +109,7 @@ const appStyles = {
     display: "flex",
     flexDirection: "row",
     alignItems: 'center',
-    height: scrHeight/5,
+    height: scrHeight/4,
     width: config.scrHeight * 9/16 - 50,
     justifyContent: 'center',
     padding: 20,

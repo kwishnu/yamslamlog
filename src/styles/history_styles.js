@@ -7,7 +7,7 @@ const tablet = config.isTablet;
 const pc = config.isPC;
 let line = tablet?config.LINE_HEIGHT * 0.7:config.LINE_HEIGHT;
 
-const support_styles = {
+const history_styles = {
 
 containerView: {
   display: 'flex',
@@ -25,7 +25,7 @@ containerView: {
 modalView: {
   display: 'flex',
   flexDirection: 'column',
-  height: "auto",
+  height: "90%",
   width: config.isPC?scrHeight * 0.4:scrWidth * 0.85,
   borderRadius: 5,
   padding: 10,
@@ -178,4 +178,4 @@ text: {
 
 }
 
-export default support_styles;
+export default history_styles;

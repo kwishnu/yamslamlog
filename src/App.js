@@ -5,6 +5,7 @@ import formatDate from 'date-fns/format';
 import { differenceInMinutes } from 'date-fns';
 import colors from './config/colors';
 import config from './config/config';
+import History from "./screens/history";
 import LogoImage from './images/logo.png';
 import styles from './styles/appStyles.js';
 
@@ -14,6 +15,7 @@ class App extends Component {
     this.state = {
       showDialog: false,
       showTieDialog: false,
+      showHistoryModal: false,
       winner: "",
       dianeWins: 0,
       kenWins: 0,
@@ -39,39 +41,37 @@ class App extends Component {
     let dianeWins = localStorage.getItem("Diane Wins");
     if (dianeWins === null) {
       localStorage.setItem("Diane Wins", 0);
-      dianeWins = 2;
+      dianeWins = 0;
     } else {
       dianeWins = parseInt(dianeWins, 10);
     }
 
     let gamesPlayed = localStorage.getItem("Games Played");
     if (gamesPlayed === null) {
-      localStorage.setItem("Games Played", 2);
-      gamesPlayed = 2; // Default value 2 because we've already played that!
+      localStorage.setItem("Games Played", 0);
+      gamesPlayed = 0;
     } else {
       gamesPlayed = parseInt(gamesPlayed, 10);
     }
-    this.setState({gamesPlayed});
 
     let lastWinner = localStorage.getItem("Last Winner");
     if (lastWinner === null) {
-      localStorage.setItem("Last Winner", "Diane");
-      lastWinner = "Diane";
+      localStorage.setItem("Last Winner", "None");
+      lastWinner = "None";
     }
-    this.setState({lastWinner});
-
-    let kenPercentage = gamesPlayed > 0 ? Math.floor((kenWins / gamesPlayed) * 100) : 0;
-    const diPercentage = gamesPlayed > 0 ? Math.floor((dianeWins / gamesPlayed) * 100) : 0;
+    const totalWins = dianeWins + kenWins;
+    let kenPercentage = totalWins > 0 ? Math.floor((kenWins / totalWins) * 100) : 0;
+    const diPercentage = totalWins > 0 ? Math.floor((dianeWins / totalWins) * 100) : 0;
     kenPercentage = (kenPercentage + diPercentage < 100 && kenPercentage + diPercentage !== 0)? kenPercentage + 1:kenPercentage;
 
-    this.setState({ kenWins, dianeWins, diPercentage, kenPercentage, date: prettyDate });
+    this.setState({ kenWins, dianeWins, diPercentage, kenPercentage, date: prettyDate, gamesPlayed, lastWinner });
   }
 
-  handleOpenDialog(name) {
-    if(name === "Tie"){
-      this.setState({ showTieDialog: true, winner: name });
+  handleOpenDialog(which) {
+    if(which === "Tie"){
+      this.setState({ showTieDialog: true, winner: "Tie" });
     }else{
-      this.setState({showDialog: true, winner: name});
+      this.setState({showDialog: true, winner: which});
     }
   }
 
@@ -83,21 +83,34 @@ class App extends Component {
     }
   }
 
-  handleAdd = () => {
-    const { winner, dianeWins, kenWins } = this.state;
+  handleAdd(winOrTie){
+    const { winner, dianeWins, kenWins, gamesPlayed } = this.state;
+    let newGamesPlayed = gamesPlayed;
+    newGamesPlayed += 1;
+    this.setState({gamesPlayed: newGamesPlayed});
+    localStorage.setItem("Games Played", newGamesPlayed);
+
+    if(winOrTie === "Tie"){
+      this.handleCloseDialog("Tie");
+      return;
+    }
 
     let newVictoryCountDi = dianeWins;
     let newVictoryCountKen = kenWins;
     let winnerString = "";
+    let lastWinner = "";
 
     if (winner === "Diane") {
       newVictoryCountDi += 1;
       this.setState({ dianeWins: newVictoryCountDi });
-      winnerString = winner + " Wins";
+      winnerString = "Diane Wins";
+      lastWinner = "Diane";
       localStorage.setItem(winnerString, newVictoryCountDi);
     } else if (winner === "Ken") {
       newVictoryCountKen += 1;
-      winnerString = winner + " Wins";
+      winnerString = "Ken Wins";
+      lastWinner = "Ken";
+      localStorage.setItem(winnerString, newVictoryCountKen);
       this.setState({ kenWins: newVictoryCountKen });
     }
 
@@ -109,9 +122,19 @@ class App extends Component {
     this.setState({
       diPercentage,
       kenPercentage,
+      gamesPlayed: newGamesPlayed,
+      lastWinner
     });      
-    this.handleCloseDialog();
+    this.handleCloseDialog("Win");
   };
+
+  toggleHistoryModal(open){
+    if(open){
+      this.setState({showHistoryModal: true});
+    }else{
+      this.setState({showHistoryModal: false});
+    }
+  }
 
   handleVisibilityChange(visible) {
     if (visible) {
@@ -226,7 +249,7 @@ class App extends Component {
             style={styles.addButtonsContainer}
           >
             <motion.button 
-              style={{...styles.add_button, backgroundColor: lastWinner == "Diane"?colors.dark_green:lastWinner == "Ken"?colors.red:'magenta', borderColor: colors.accent_purple, }}
+              style={{...styles.add_button, backgroundColor: lastWinner === "Diane"?colors.dark_green:lastWinner === "Ken"?colors.red:'magenta', borderColor: colors.gray_4, }}
               whileTap={{ scale: 0.95 }} 
               onClick={() => this.handleOpenDialog("Diane")}
             >
@@ -234,7 +257,7 @@ class App extends Component {
             </motion.button>
 
             <motion.button 
-              style={{...styles.add_button, backgroundColor: lastWinner == "Ken"?colors.dark_green:lastWinner == "Diane"?colors.red:'blue', borderColor: colors.gray_4, }}
+              style={{...styles.add_button, backgroundColor: lastWinner === "Ken"?colors.dark_green:lastWinner === "Diane"?colors.red:'blue', borderColor: colors.gray_4, }}
               whileTap={{ scale: 0.9 }} 
               onClick={() => this.handleOpenDialog("Ken")}
             >
@@ -283,7 +306,7 @@ class App extends Component {
             <motion.button 
               style={{...styles.results_button, backgroundColor: colors.dark_green, borderColor: colors.bright_green, }}
               whileTap={{ scale: 0.95 }} 
-              onClick={() => this.handleOpenDialog("Diane")}
+              onClick={() => this.toggleHistoryModal(true)}
             >
               <div style={styles.resultsButtonText}>Show Tabulated Results</div>
             </motion.button>
@@ -293,6 +316,10 @@ class App extends Component {
         <div 
           id="appRightBox"
           style={{ ...styles.adBox, backgroundColor:colors.gray_3, borderRightColor: colors.off_black, right: 0 }}
+        />
+        <History
+          isModalVisible={this.state.showHistoryModal}
+          requestModalClose={(open) => { this.toggleHistoryModal(open) }}
         />
         </div>
       </PageVisibility>
