@@ -112,7 +112,7 @@ const appStyles = {
     height: scrHeight/4,
     width: config.scrHeight * 9/16 - 50,
     justifyContent: 'center',
-    padding: 20,
+    // padding: 20,
     borderColor: colors.gray_4, 
     borderWidth: 2, 
     borderStyle: 'solid',
@@ -186,15 +186,16 @@ const appStyles = {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 5,
+    marginBottom: 5,
     width: "100%",
   },
   gamesFieldDiv: {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: "35%"
+    height: "35%",
+    marginRight: 10
   },
   gamesFieldDivOuter: {
     height: "100%", 
