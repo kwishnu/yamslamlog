@@ -226,7 +226,7 @@ class App extends Component {
             </div>
             <div style={styles.gamesFieldDivOuter}>
               <div style={styles.gamesFieldDiv}>
-                <div style={styles.field}>
+                <div style={{...styles.field, marginRight: 50}}>
                   <div style={styles.field_text}>{gamesPlayed}</div>
                 </div>
               </div>
