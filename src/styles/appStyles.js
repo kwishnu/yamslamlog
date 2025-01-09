@@ -173,6 +173,7 @@ const appStyles = {
   labelText: {
     fontSize: 26,
     color: colors.off_white,
+    marginTop: 10,
     marginLeft: 10,
     userSelect: "none"
   },
@@ -186,8 +187,8 @@ const appStyles = {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 10,
     width: "100%",
   },
   gamesFieldDiv: {
