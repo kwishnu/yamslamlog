@@ -22,6 +22,15 @@ const appStyles = {
     zIndex: -1,
     backgroundColor: '#95ac01'
   },
+  centerContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    height: scrHeight,
+    width: config.scrHeight * 9/16 - 50,
+    padding: 20,
+    },
   adBox: {
     display: "flex",
     flexDirection: "row",
@@ -47,48 +56,28 @@ const appStyles = {
   gamesCountContainer: {
     position: "fixed",
     top: "20%",
-    left: "50%",
-    // height: 30,
-    // width: "80%",
-    transform: "translate(-50%, -50%)",
-    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+    left: pc ? widthLeftOrRight - 40 : 0,
+    width: pc ? scrWidth - (2 * widthLeftOrRight - 40) : "100%",
     padding: "20px",
     borderRadius: "8px",
     borderColor: 'red', borderWidth: 2,
-    zIndex: 1000,
+    zIndex: 1000
 },
   gamesCountDiv: {
     display: "flex",
     flexDirection: "row",
-    width: scrHeight/2,
-    height: 40,
-    borderColor: 'yellow', borderWidth: 2,
+    width: "100%",
+    height: "auto"
 },
-  centerContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    height: scrHeight,
-    width: config.scrHeight * 9/16 - 50,
-    padding: 20,
-    },
-  headerImageContainer: {
-    // display: "flex",
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // height: scrHeight/7,
-    // width: config.scrHeight * 9/16,
-    // padding: 20,
-    },
   addButtonsContainer: {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'center',
     height: scrHeight/6,
-    width: config.scrHeight * 9/16 - 50,
-    padding: 20,
-    },
+    // width: config.scrHeight * 9/16 - 50,
+    width: pc ? scrWidth - (2.1 * widthLeftOrRight - 40) : "95%",
+    padding: 20
+  },
   add_button: {
     display: "flex",
     flexDirection: "column",
@@ -96,23 +85,21 @@ const appStyles = {
     justifyContent: 'center',
     height: '80%',
     width: '50%',
-    marginRight: 20,
-    marginLeft: 20,
-    marginTop: 30,
-    marginBottom: 30,
+    margin: 20,
     borderRadius: 15,
     borderWidth: 2, 
     borderStyle: 'solid',
     boxShadow: `10px 10px 36px ${colors.off_black}`,
+    borderColor: colors.gray_4
   },
-  resultsContainer: {
+  winsContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: 'center',
     height: scrHeight/4,
-    width: config.scrHeight * 9/16 - 50,
+    width: pc? config.scrHeight * 9/16 - 50 : config.scrHeight * 9/16 - 80,
     justifyContent: 'center',
-    // padding: 20,
+    paddingLeft: 20,
     borderColor: colors.gray_4, 
     borderWidth: 2, 
     borderStyle: 'solid',
@@ -125,7 +112,7 @@ const appStyles = {
     justifyContent: 'center',
     marginTop: 20,
     height: 100,
-    width: config.scrHeight * 9/16 - 50,
+    width: config.scrHeight * 9/16 - 50
     },
   results_button: {
     display: "flex",
@@ -195,11 +182,9 @@ const appStyles = {
     display: "flex",
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: "35%",
     marginRight: 10
   },
   gamesFieldDivOuter: {
-    height: "100%", 
     width: "50%", 
     display: "flex",
     alignItems: 'center',
@@ -245,14 +230,7 @@ const appStyles = {
     fontSize: 20,
     color: colors.off_white,
     userSelect: 'none'
-  },
-  footerText: {
-    fontSize: 14,
-    color: colors.off_white,
-    textAlign: "center",
-    userSelect: 'none'
-  },
-
+  }
 }
 
 export default appStyles;

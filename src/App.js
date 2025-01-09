@@ -249,7 +249,7 @@ class App extends Component {
             style={styles.addButtonsContainer}
           >
             <motion.button 
-              style={{...styles.add_button, backgroundColor: lastWinner === "Diane"?colors.dark_green:lastWinner === "Ken"?colors.red:'magenta', borderColor: colors.gray_4, }}
+              style={{...styles.add_button, backgroundColor: lastWinner === "Diane"?colors.dark_green:lastWinner === "Ken"?colors.red:'magenta' }}
               whileTap={{ scale: 0.95 }} 
               onClick={() => this.handleOpenDialog("Diane")}
             >
@@ -257,14 +257,14 @@ class App extends Component {
             </motion.button>
 
             <motion.button 
-              style={{...styles.add_button, backgroundColor: lastWinner === "Ken"?colors.dark_green:lastWinner === "Diane"?colors.red:'blue', borderColor: colors.gray_4, }}
+              style={{...styles.add_button, backgroundColor: lastWinner === "Ken"?colors.dark_green:lastWinner === "Diane"?colors.red:'blue' }}
               whileTap={{ scale: 0.9 }} 
               onClick={() => this.handleOpenDialog("Ken")}
             >
               <div style={styles.button_text}>KEN</div>
             </motion.button>
         </div>
-        <div style={styles.resultsContainer}>
+        <div style={styles.winsContainer}>
             <div style={styles.results}>
               <div style={styles.labelDiv}><div style={styles.labelText}>Wins:</div></div>
               <div style={styles.fieldDiv}>
