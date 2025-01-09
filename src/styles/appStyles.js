@@ -169,11 +169,11 @@ const appStyles = {
     justifyContent: 'flex-start',
     height: "15%",
     width: "100%",
+    marginTop: 8
   },
   labelText: {
     fontSize: 26,
     color: colors.off_white,
-    marginTop: 10,
     marginLeft: 10,
     userSelect: "none"
   },

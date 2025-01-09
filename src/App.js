@@ -266,13 +266,13 @@ class App extends Component {
         </div>
         <div style={styles.resultsContainer}>
             <div style={styles.results}>
-              <div style={styles.labelDiv}><p style={styles.labelText}>Wins:</p></div>
+              <div style={styles.labelDiv}><div style={styles.labelText}>Wins:</div></div>
               <div style={styles.fieldDiv}>
                 <div style={styles.field}>
                   <div style={styles.field_text}>{dianeWins}</div>
                 </div>
               </div>
-              <div style={styles.labelDiv}><p style={styles.labelText}>Percentage:</p></div>
+              <div style={styles.labelDiv}><div style={styles.labelText}>Percentage:</div></div>
               <div style={styles.fieldDiv}>
                 <div style={styles.field}>
                   <div style={styles.field_text}>{diPercentage}</div>
