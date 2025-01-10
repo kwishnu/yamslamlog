@@ -14,8 +14,7 @@ class History extends Component {
     };
   }
   componentDidMount() {
-    const storedHistory = JSON.parse(localStorage.getItem('gameHistory')) || {};
-    console.log("gameHistory: " + JSON.stringify(storedHistory));
+    const storedHistory = JSON.parse(localStorage.getItem('gameHistory')) || {"1/7/2025":{"Diane":2,"Ken":0,"Ties":0}};
     this.setState({ gameHistory: storedHistory });
   }
 
@@ -27,7 +26,7 @@ class History extends Component {
   }
 
   fetchHistory = () => {
-    const storedHistory = JSON.parse(localStorage.getItem('gameHistory')) || {};
+    const storedHistory = JSON.parse(localStorage.getItem('gameHistory')) || {"1/7/2025":{"Diane":2,"Ken":0,"Ties":0}};
     this.setState({ gameHistory: storedHistory });
   };
 
