@@ -29,7 +29,6 @@ class App extends Component {
 
   componentDidMount() {
     const prettyDate = formatDate(new Date(), "EEEE, MMMM d");
-    console.log("prettyDate: " + prettyDate);
     let kenWins = localStorage.getItem("Ken Wins");
     if (kenWins === null) {
       localStorage.setItem("Ken Wins", 0);
@@ -91,6 +90,7 @@ class App extends Component {
     localStorage.setItem("Games Played", newGamesPlayed);
 
     if(winOrTie === "Tie"){
+      this.handleVictory("Tie");
       this.handleCloseDialog("Tie");
       return;
     }
@@ -105,11 +105,13 @@ class App extends Component {
       this.setState({ dianeWins: newVictoryCountDi });
       winnerString = "Diane Wins";
       lastWinner = "Diane";
+      this.handleVictory("Diane");
       localStorage.setItem(winnerString, newVictoryCountDi);
     } else if (winner === "Ken") {
       newVictoryCountKen += 1;
       winnerString = "Ken Wins";
       lastWinner = "Ken";
+      this.handleVictory("Ken");
       localStorage.setItem(winnerString, newVictoryCountKen);
       this.setState({ kenWins: newVictoryCountKen });
     }
@@ -126,6 +128,29 @@ class App extends Component {
       lastWinner
     });      
     this.handleCloseDialog("Win");
+  };
+
+  handleVictory = (team) => {
+    const today = new Date().toLocaleDateString(); // Format: "MM/DD/YYYY"
+
+    // Retrieve history or initialize it
+    const history = JSON.parse(localStorage.getItem('gameHistory')) || {};
+
+    // Ensure today's entry exists
+    if (!history[today]) {
+      history[today] = { Diane: 0, Ken: 0, Ties: 0 };
+    }
+
+    // Update today's totals
+    if (team === 'Diane') history[today].Diane += 1;
+    else if (team === 'Ken') history[today].Ken += 1;
+    else if (team === 'Tie') history[today].Ties += 1;
+
+    // Save back to localStorage
+    localStorage.setItem('gameHistory', JSON.stringify(history));
+
+    // Optionally, update state if needed for immediate UI feedback
+    this.setState({}); // Rerender the component
   };
 
   toggleHistoryModal(open){
