@@ -115,7 +115,7 @@ class App extends Component {
       localStorage.setItem(winnerString, newVictoryCountKen);
       this.setState({ kenWins: newVictoryCountKen });
     }
-
+    localStorage.setItem("Last Winner", lastWinner);
     const totalVictories = newVictoryCountDi + newVictoryCountKen;
     const diPercentage = totalVictories > 0 ? Math.floor((newVictoryCountDi / totalVictories) * 100) : 0;
     let kenPercentage = totalVictories > 0 ? Math.floor((newVictoryCountKen / totalVictories) * 100) : 0;
