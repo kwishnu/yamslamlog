@@ -23,7 +23,8 @@ class App extends Component {
       diPercentage: 0,
       kenPercentage: 0,
       date: "",
-      visible: true
+      visible: true,
+      refreshKey: 0
     }
   }
 
@@ -149,8 +150,7 @@ class App extends Component {
     // Save back to localStorage
     localStorage.setItem('gameHistory', JSON.stringify(history));
 
-    // Optionally, update state if needed for immediate UI feedback
-    this.setState({}); // Rerender the component
+    this.setState((prevState) => ({ refreshKey: prevState.refreshKey + 1 }));
   };
 
   toggleHistoryModal(open){
@@ -343,6 +343,7 @@ class App extends Component {
           style={{ ...styles.adBox, backgroundColor:colors.gray_3, borderRightColor: colors.off_black, right: 0 }}
         />
         <History
+          refreshKey={this.state.refreshKey}
           isModalVisible={this.state.showHistoryModal}
           requestModalClose={(open) => { this.toggleHistoryModal(open) }}
         />
